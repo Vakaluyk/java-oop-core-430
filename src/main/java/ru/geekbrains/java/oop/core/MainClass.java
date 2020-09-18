@@ -1,77 +1,31 @@
 package ru.geekbrains.java.oop.core;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class MainClass {
-
     public static void main(String[] args) {
-        int row;
-        int column;
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter values for a two-dimensional array. Choose the size. Row and Column: ");
-        row = sc.nextInt();
-        column = sc.nextInt();
-
-        String[][] newArray = new String[row][column];
-        try {
-            createArr(newArray, sc, row, column);
-//            printArr(newArray);
-//            calcArr(newArray, row, column);
-            System.out.println("Sum is " + +calcArr(newArray, row, column));
-        } catch (MyArraySizeException e) {
-            e.printStackTrace();
-        } catch (MyArrayDataException e) {
-            e.printStackTrace();
+        String[] fruit = {"apple", "orange", "melon", "apple", "kiwi", "kiwi", "banana", "kiwi", "pear", "mango", "papaya"};
+        HashMap<String, Integer> fetus = new HashMap<>();
+        for (String x : fruit) {
+            fetus.put(x, fetus.getOrDefault(x,0)+1);
         }
-    }
+        System.out.println(fetus);
 
-    private static void createArr(String[][] array, Scanner sc, int row, int column) {
-        if (row != 4 || column != 4) throw new MyArraySizeException(row, column);
-        System.out.println("Create Array ");
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.println("New row " + i + " column " + j);
-                array[i][j] = sc.next();
-            }
-        }
-        printArr(array);
-        calcArr(array, row, column);
-    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private static int calcArr(String[][] array, int row, int column) {
-        int sum = 0;
-        int[][] arrayInt = new int[row][column];
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                try {
-                    arrayInt[i][j] = Integer.parseInt(array[i][j]);
-                    sum += arrayInt[i][j];
-                } catch (NumberFormatException e) {
-                    throw new MyArrayDataException(i, j);
-                }
-            }
-        }
-        printArrInt(arrayInt);
-        return sum;
-    }
+        // сощдаем книгу
+        Phonebook book = new Phonebook();
+        book.addContact("Roma", "363487");
+        book.addContact("Rita", "870977");
+        book.addContact("Kola", "544456");
+        book.addContact("Roma", "877765");
+        book.addContact("Sena", "877737");
+        book.addContact("Sena", "877733");
 
-    private static void printArr(String[][] array) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j]);
-            }
-            System.out.println();
-        }
-    }
+        // ищем по имени
+        book.findAndPrint("Roma");
+        book.findAndPrint("Sena");
+        book.findAndPrint("Kola");
 
-    private static void printArrInt(int[][] array) {
-        System.out.println("This is arr Int ");
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j]);
-            }
-            System.out.println();
-        }
     }
 }
