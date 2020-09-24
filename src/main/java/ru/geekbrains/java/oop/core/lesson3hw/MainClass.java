@@ -1,4 +1,4 @@
-package ru.geekbrains.java.oop.core;
+package ru.geekbrains.java.oop.core.lesson3hw;
 
 import java.util.*;
 
